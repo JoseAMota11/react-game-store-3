@@ -1,0 +1,79 @@
+@use '../../scss/abstracts/variables' as *;
+
+.pagination-container {
+  display: flex;
+  gap: 0.4rem;
+  list-style-type: none;
+
+  .pagination-item {
+    display: flex;
+    font-size: $font-size-small;
+    width: 3.4rem;
+    height: 3.4rem;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: $border-radius-medium;
+    padding: $padding-smaller;
+    color: $white;
+    background-color: transparent;
+
+    &.dots {
+      pointer-events: none;
+      color: $white-disabled;
+    }
+
+    ion-icon {
+      font-size: $font-size-big;
+    }
+
+    &.selected {
+      background-color: $dark-blue-hover;
+    }
+
+    &.disabled {
+      pointer-events: none;
+      color: $white-disabled;
+    }
+
+    &:hover {
+      background-color: $dark-blue-hover;
+    }
+  }
+
+  @media (max-width: $screen-breakpoint-biggest) {
+    padding: $padding-small;
+    gap: 0.4rem;
+    align-items: center;
+    justify-content: center;
+
+    .pagination-item {
+      font-size: $font-size-small;
+      width: 2.6rem;
+      height: 2.6rem;
+      border-radius: $border-radius-small;
+      padding: $padding-smallest;
+
+      ion-icon {
+        font-size: $font-size-medium;
+      }
+    }
+  }
+
+  @media (max-width: $screen-breakpoint-small) {
+    justify-content: space-between;
+    padding: 0;
+
+    .pagination-item {
+      width: max-content;
+      height: max-content;
+
+      ion-icon,
+      &.dots,
+      &.selected,
+      &.disabled {
+        font-size: $font-size-small;
+      }
+    }
+  }
+}

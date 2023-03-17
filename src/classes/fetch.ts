@@ -1,5 +1,4 @@
 class Fetch {
-  private url = '';
   private options: object = {
     method: 'GET',
     headers: {
@@ -8,16 +7,15 @@ class Fetch {
   };
 
   public async get(url: string, request: object) {
-    this.url = url;
-    const params = new URLSearchParams(this.url);
+    const params = new URLSearchParams(url);
 
     for (const [key, value] of Object.entries(request)) {
       params.set(key, value);
     }
 
-    this.url = `${this.url}?${params}`;
+    url = `${url}?${params}`;
 
-    const data = await fetch(this.url, this.options);
+    const data = await fetch(url, this.options);
     const response = await data.json();
     return response;
   }
