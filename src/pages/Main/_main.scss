@@ -1,13 +1,9 @@
 @use '../../scss/abstracts/variables' as *;
 @use '../../scss/abstracts/mixins' as *;
 
-.main {
-  @include flexbox($gap: 1rem);
-
-  &-grid {
-    width: $width-bigger;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
-  }
+.grid {
+  width: $width-bigger;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
 }

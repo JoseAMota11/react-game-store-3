@@ -2,5 +2,5 @@
 @use '../../scss/abstracts/mixins' as *;
 
 .home {
-  @include flexbox();
+  @include flexbox($gap: 1rem);
 }

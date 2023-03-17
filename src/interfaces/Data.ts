@@ -3,5 +3,5 @@ export interface Data {
   name: string;
   rating: number;
   rating_top: number;
-  id: number;
+  id?: number;
 }
