@@ -1,7 +1,9 @@
+@use '../abstracts/variables' as *;
 @import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
 
 html,
 body {
   width: 100%;
   font-family: 'Poppins', sans-serif;
+  background-color: $dark-blue;
 }

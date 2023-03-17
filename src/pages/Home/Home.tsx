@@ -23,7 +23,7 @@ const Home = () => {
   }, [currentPage]);
 
   return (
-    <div>
+    <div className='home'>
       <Navbar />
       {data.length > 0 ? (
         <Main

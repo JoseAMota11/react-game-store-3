@@ -11,23 +11,21 @@ const Main = ({
   siblingCount,
 }: MainProps) => {
   return (
-    <>
-      <div>
+    <div className='main'>
+      <div className='main-grid'>
         {data.map((card) => (
           <Card key={card.id} data={card} />
         ))}
       </div>
-      <div>
-        <Pagination
-          className='pagination-bar'
-          currentPage={currentPage}
-          totalCount={totalCount}
-          pageSize={pageSize}
-          onPageChange={onPageChange}
-          siblingCount={siblingCount}
-        />
-      </div>
-    </>
+      <Pagination
+        className='pagination-bar'
+        currentPage={currentPage}
+        totalCount={totalCount}
+        pageSize={pageSize}
+        onPageChange={onPageChange}
+        siblingCount={siblingCount}
+      />
+    </div>
   );
 };
 
