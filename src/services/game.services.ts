@@ -11,9 +11,6 @@ export const getGames = async (
     page_size: pageSize,
     page: currentPage,
   };
-  const { results, count }: Game = await fetchSomething.get(
-    URL_VARIABLE,
-    request
-  );
-  return { results, count };
+  const result: Game = await fetchSomething.get(URL_VARIABLE, request);
+  return result;
 };

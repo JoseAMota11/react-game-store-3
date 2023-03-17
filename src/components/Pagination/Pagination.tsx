@@ -49,7 +49,11 @@ const Pagination = ({
       {paginationRange.map((pageNumber) => {
         if (pageNumber === DOTS) {
           return (
-            <button type='button' className='pagination-item dots'>
+            <button
+              key={totalCount--}
+              type='button'
+              className='pagination-item dots'
+            >
               &#8230;
             </button>
           );

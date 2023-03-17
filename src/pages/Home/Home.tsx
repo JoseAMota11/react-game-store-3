@@ -13,24 +13,28 @@ const Home = () => {
   useEffect(() => {
     (async function () {
       try {
-        const { result, count } = await getGames(PAGE_SIZE, currentPage);
-        setData(result);
-        setTotalCount(count);
-      } catch (error) {}
+        const response = await getGames(PAGE_SIZE, currentPage);
+        setData(response.results);
+        setTotalCount(response.count);
+      } catch (error) {
+        // Coming soon
+      }
     })();
   }, [currentPage]);
 
   return (
     <div>
       <Navbar />
-      <Main
-        // data={data}
-        currentPage={currentPage}
-        pageSize={PAGE_SIZE}
-        totalCount={totalCount}
-        onPageChange={(page) => setCurrentPage(page)}
-        siblingCount={1}
-      />
+      {data.length > 0 ? (
+        <Main
+          data={data}
+          currentPage={currentPage}
+          totalCount={totalCount}
+          pageSize={PAGE_SIZE}
+          onPageChange={(page) => setCurrentPage(page)}
+          siblingCount={1}
+        />
+      ) : null}
       <Footer />
     </div>
   );

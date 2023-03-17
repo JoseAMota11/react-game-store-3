@@ -1,26 +1,33 @@
+import Card from '../../components/Card/Card';
 import Pagination from '../../components/Pagination/Pagination';
-import { PaginationProps } from '../../interfaces/PaginationProps';
+import { MainProps } from '../../interfaces/MainProps';
 
 const Main = ({
-  // data,
+  data,
   totalCount,
   currentPage,
   onPageChange,
   pageSize,
   siblingCount,
-}: PaginationProps) => {
+}: MainProps) => {
   return (
-    <div>
-      <Pagination
-        // data={data}
-        className='pagination-bar'
-        currentPage={currentPage}
-        totalCount={totalCount}
-        pageSize={pageSize}
-        onPageChange={onPageChange}
-        siblingCount={siblingCount}
-      />
-    </div>
+    <>
+      <div>
+        {data.map((card) => (
+          <Card key={card.id} data={card} />
+        ))}
+      </div>
+      <div>
+        <Pagination
+          className='pagination-bar'
+          currentPage={currentPage}
+          totalCount={totalCount}
+          pageSize={pageSize}
+          onPageChange={onPageChange}
+          siblingCount={siblingCount}
+        />
+      </div>
+    </>
   );
 };
 
