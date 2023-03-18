@@ -1,0 +1,39 @@
+@use '../../scss/abstracts/variables' as *;
+@use '../../scss/abstracts/mixins' as *;
+
+.center {
+  @include flexbox();
+
+  .single-page {
+    width: $width-big;
+    color: $white;
+    padding: $padding-small;
+
+    &-main {
+      @include flexbox(
+        $direction: row,
+        $justify: space-between,
+        $align: center
+      );
+      padding: $padding-small 0;
+
+      .rating {
+        @include flexbox($direction: row, $align: center);
+      }
+    }
+
+    &-image {
+      background-color: $white;
+      border-radius: $border-radius-medium;
+    }
+
+    .description-title,
+    .platform-title {
+      padding: $padding-small 0;
+    }
+
+    &-description {
+      text-align: justify;
+    }
+  }
+}

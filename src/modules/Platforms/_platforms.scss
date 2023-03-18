@@ -1,0 +1,13 @@
+@use '../../scss/abstracts/variables' as *;
+@use '../../scss/abstracts/mixins' as *;
+
+.platform {
+  @include flexbox($direction: row, $justify: unset, $align: unset, $gap: 1rem);
+  flex-wrap: wrap;
+
+  &-item {
+    background-color: $blue;
+    padding: $padding-smallest;
+    border-radius: $border-radius-small;
+  }
+}

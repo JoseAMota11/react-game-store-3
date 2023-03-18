@@ -50,7 +50,7 @@ const SinglePage = () => {
   }: SinglePageItems = data;
 
   return (
-    <>
+    <div className='center'>
       {loading ? (
         <Loading />
       ) : (
@@ -58,7 +58,7 @@ const SinglePage = () => {
           <div className='single-page-main'>
             <h2 className='tile'>{name}</h2>
             <span className='rating'>
-              {rating} / {rating_top}
+              <ion-icon name='star' /> {rating} / {rating_top}
             </span>
           </div>
           <img
@@ -68,13 +68,15 @@ const SinglePage = () => {
           />
           <h3 className='description-title'>Description</h3>
           <p className='single-page-description'>{description_raw}</p>
-          <h3>Platforms</h3>
-          {platforms.map(({ platform: { name, id } }) => (
-            <Platforms key={id} platform={{ name }} />
-          ))}
+          <h3 className='platform-title'>Platforms</h3>
+          <div className='platform'>
+            {platforms.map(({ platform: { name, id } }) => (
+              <Platforms key={id} platform={{ name }} />
+            ))}
+          </div>
         </div>
       )}
-    </>
+    </div>
   );
 };
 
