@@ -2,11 +2,11 @@ import { useState } from 'react';
 import {
   createBrowserRouter,
   RouterProvider,
-  useSearchParams,
 } from 'react-router-dom';
 import { route } from './routes/routes';
 import Home from './pages/Home/Home';
 import SinglePage from './pages/SinglePage/SinglePage';
+import Login from './components/Login/Login';
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -21,6 +21,10 @@ const App = () => {
     {
       path: route.game,
       element: <SinglePage />,
+    },
+    {
+      path: route.login,
+      element: <Login />,
     },
   ]);
 

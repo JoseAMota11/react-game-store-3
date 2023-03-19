@@ -26,6 +26,9 @@
     box-shadow: $box-shadow-card;
     color: $blue;
     font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   &-input {

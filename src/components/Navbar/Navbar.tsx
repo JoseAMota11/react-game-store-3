@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const hamburgerRef = useRef<HTMLButtonElement>(null);
@@ -14,7 +15,9 @@ const Navbar = () => {
         type='search'
         placeholder='E.g. Minecraft'
       />
-      <button className='navbar-button'>Login</button>
+      <Link to='/login' className='navbar-button'>
+        Login
+      </Link>
       <button
         className='navbar-hamburger'
         ref={hamburgerRef}

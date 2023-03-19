@@ -1,0 +1,61 @@
+@use '../../scss/abstracts/variables' as *;
+@use '../../scss/abstracts/mixins' as *;
+
+.center-login {
+  min-height: 100vh;
+  @include flexbox();
+
+  .login {
+    border-radius: $border-radius-medium;
+    width: $width-smaller;
+    background-color: $blue;
+    padding: $padding-smaller;
+    @include flexbox(column, stretch, stretch, 1rem);
+    color: $white;
+
+    &-title {
+      text-align: center;
+    }
+
+    &-email,
+    &-password {
+      width: 100%;
+      @include flexbox($direction: row, $justify: stretch, $gap: 0.6rem);
+
+      ion-icon {
+        font-size: 1.8rem;
+      }
+
+      input {
+        height: 2.4rem;
+        width: 100%;
+        border-radius: $border-radius-small;
+        text-indent: 0.4rem;
+      }
+    }
+
+    &-button {
+      height: 2.4rem;
+      width: 100%;
+      border-radius: $border-radius-small;
+      background-color: $white;
+      font-size: 1rem;
+      font-weight: 600;
+      color: $blue;
+      cursor: pointer;
+      transition: 0.3s;
+
+      &:hover {
+        background-color: $blue;
+        color: $white;
+        outline: 2px solid $white;
+      }
+    }
+
+    &-link {
+      text-align: center;
+      color: $white;
+      text-decoration: underline;
+    }
+  }
+}
