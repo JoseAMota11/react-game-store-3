@@ -57,5 +57,23 @@
       color: $white;
       text-decoration: underline;
     }
+
+    @media (max-width: $screen-breakpoint-small) {
+      width: 100%;
+    }
+
+    @media (max-width: $screen-breakpoint-smaller) {
+      height: 100%;
+      background-color: unset;
+      gap: 2rem;
+      padding: unset;
+
+      &-title {
+        font-size: 2rem;
+      }
+    }
+  }
+  @media (max-width: $screen-breakpoint-small) {
+    padding: $padding-small;
   }
 }
