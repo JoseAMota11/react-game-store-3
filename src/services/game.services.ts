@@ -4,7 +4,7 @@ import { Game } from '../interfaces/GameResult';
 
 export const getGames = async (
   pageSize: number,
-  currentPage: number
+  currentPage: number | undefined
 ): Promise<object> => {
   const request = {
     key: KEY,

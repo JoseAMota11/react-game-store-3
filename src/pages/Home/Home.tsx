@@ -1,15 +1,14 @@
 import { useEffect, useState } from 'react';
 import { getGames } from '../../services/game.services';
+import { PAGE_SIZE } from '../../helpers/constants';
 import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
 import Main from '../Main/Main';
-import { PAGE_SIZE } from '../../helpers/constants';
 import Pagination from '../../components/Pagination/Pagination';
 import Loading from '../../modules/Loading/Loading';
 
-const Home = () => {
+const Home = ({ currentPage, setCurrentPage }) => {
   const [data, setData] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
   const [loading, setLoading] = useState(true);
 

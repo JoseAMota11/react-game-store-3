@@ -48,6 +48,7 @@ const SinglePage = () => {
     rating_top,
     platforms,
   }: SinglePageItems = data;
+  const showRating = ` ${rating} / ${rating_top}`;
 
   return (
     <div className='center'>
@@ -58,7 +59,12 @@ const SinglePage = () => {
           <div className='single-page-main'>
             <h2 className='tile'>{name}</h2>
             <span className='rating'>
-              <ion-icon name='star' /> {rating} / {rating_top}
+              {rating_top === 0 ? null : (
+                <>
+                  <ion-icon name='star' />
+                  <span>{showRating}</span>
+                </>
+              )}
             </span>
           </div>
           <img
@@ -67,7 +73,11 @@ const SinglePage = () => {
             alt={name}
           />
           <h3 className='description-title'>Description</h3>
-          <p className='single-page-description'>{description_raw}</p>
+          {description_raw.length === 0 ? (
+            <span>No description</span>
+          ) : (
+            <p className='single-page-description'>{description_raw}</p>
+          )}
           <h3 className='platform-title'>Platforms</h3>
           <div className='platform'>
             {platforms.map(({ platform: { name, id } }) => (
