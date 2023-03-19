@@ -3,4 +3,8 @@
 
 .home {
   @include flexbox($gap: 1rem);
+
+  @media (max-width: $screen-breakpoint-biggest) {
+    padding: 0 $padding-small;
+  }
 }

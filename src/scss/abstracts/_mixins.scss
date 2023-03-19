@@ -5,3 +5,10 @@
   align-items: $align;
   gap: $gap;
 }
+
+@mixin grid($justify: center, $align: center, $gap: 0) {
+  display: grid;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
+}
