@@ -1,5 +1,5 @@
 import fetchSomething from '../classes/fetch';
-import { KEY, URL_VARIABLE } from '../helpers/constants';
+import { KEY, URL_GAMES } from '../helpers/constants';
 import { Game } from '../interfaces/GameResult';
 
 export const getGames = async (
@@ -12,14 +12,14 @@ export const getGames = async (
     page: currentPage,
   };
   window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-  const result: Game = await fetchSomething.get(URL_VARIABLE, request);
+  const result: Game = await fetchSomething.get(URL_GAMES, request);
   return result;
 };
 
 export const getGameById = async (
   id: number | string | undefined
 ): Promise<object> => {
-  const NEW_URL = `${URL_VARIABLE}/${id}`;
+  const NEW_URL = `${URL_GAMES}/${id}`;
   const request = {
     key: KEY,
   };

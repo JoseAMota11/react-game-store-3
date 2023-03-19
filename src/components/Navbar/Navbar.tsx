@@ -1,12 +1,15 @@
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { SavedUserProps } from '../../interfaces/SavedUserProps';
 
-const Navbar = () => {
+const Navbar = ({ savedUser, setSavedUser }: SavedUserProps) => {
   const hamburgerRef = useRef<HTMLButtonElement>(null);
 
   const handleClick = () => {
     hamburgerRef.current?.classList.toggle('active');
   };
+
+  console.log(savedUser?.email);
   return (
     <nav className='navbar'>
       <h1 className='navbar-logo'>Game Store 3.0</h1>
@@ -15,9 +18,18 @@ const Navbar = () => {
         type='search'
         placeholder='E.g. Minecraft'
       />
-      <Link to='/login' className='navbar-button'>
-        Login
-      </Link>
+      {savedUser?.email?.length > 0 ? (
+        <button
+          onClick={() => setSavedUser(() => ({}))}
+          className='navbar-button--logout'
+        >
+          Logout
+        </button>
+      ) : (
+        <Link to='/login' className='navbar-button--login'>
+          Login
+        </Link>
+      )}
       <button
         className='navbar-hamburger'
         ref={hamburgerRef}

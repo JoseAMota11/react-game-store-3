@@ -6,14 +6,16 @@ class Fetch {
     },
   };
 
-  public async get(url: string, request: object) {
+  public async get(url: string, request?: object) {
     const params = new URLSearchParams(url);
 
-    for (const [key, value] of Object.entries(request)) {
-      params.set(key, value);
+    if (request) {
+      for (const [key, value] of Object.entries(request)) {
+        params.set(key, value);
+      }
     }
 
-    url = `${url}?${params}`;
+    if (params.toString()) url = `${url}?${params.toString()}`;
 
     const data = await fetch(url, this.options);
     const response = await data.json();

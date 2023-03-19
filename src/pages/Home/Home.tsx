@@ -6,8 +6,14 @@ import Footer from '../../components/Footer/Footer';
 import Main from '../Main/Main';
 import Pagination from '../../components/Pagination/Pagination';
 import Loading from '../../modules/Loading/Loading';
+import { SavedUserProps } from '../../interfaces/SavedUserProps';
 
-const Home = ({ currentPage, setCurrentPage }) => {
+const Home = ({
+  currentPage,
+  setCurrentPage,
+  savedUser,
+  setSavedUser,
+}: Partial<SavedUserProps>) => {
   const [data, setData] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -28,7 +34,7 @@ const Home = ({ currentPage, setCurrentPage }) => {
 
   return (
     <div className='home'>
-      <Navbar />
+      <Navbar savedUser={savedUser} setSavedUser={setSavedUser} />
       {loading ? <Loading /> : <Main data={data} />}
       <Pagination
         className='pagination-bar'
