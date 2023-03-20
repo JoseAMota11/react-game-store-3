@@ -24,7 +24,7 @@ const App = () => {
     },
     {
       path: route.game,
-      element: <SinglePage />,
+      element: <SinglePage savedUser={savedUser} setSavedUser={setSavedUser} />,
     },
     {
       path: route.login,

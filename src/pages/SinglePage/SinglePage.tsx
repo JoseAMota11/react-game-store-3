@@ -4,8 +4,10 @@ import { getGameById } from '../../services/game.services';
 import Loading from '../../modules/Loading/Loading';
 import { SinglePageItems } from '../../interfaces/SinglePageItems';
 import Platforms from '../../modules/Platforms/Platforms';
+import { SavedUserProps } from '../../interfaces/SavedUserProps';
+import Comment from '../../components/Comment/Comment';
 
-const SinglePage = () => {
+const SinglePage = ({ savedUser }: SavedUserProps) => {
   const { id } = useParams();
   const [data, setData] = useState<SinglePageItems>({
     name: '',
@@ -16,6 +18,7 @@ const SinglePage = () => {
     platforms: [],
   });
   const [loading, setLoading] = useState(true);
+  const [gamesComment, setGamesComment] = useState();
 
   useEffect(() => {
     (async function test() {
@@ -84,6 +87,27 @@ const SinglePage = () => {
               <Platforms key={id} platform={{ name }} />
             ))}
           </div>
+          <h3 className='platform-title'>Comments</h3>
+          {savedUser?.email.length > 0 &&
+          savedUser.commentId === parseInt(id) ? (
+            <div className='comment'>
+              {savedUser.games?.map(({ id, comments }) => (
+                <Comment
+                  key={id}
+                  comments={comments}
+                  name={savedUser.name}
+                  lastName={savedUser.lastname}
+                />
+              ))}
+            </div>
+          ) : (
+            <span style={{ textAlign: 'center' }}>No comments</span>
+          )}
+          <textarea
+            className='single-page-comment'
+            placeholder='Share yours thoughts'
+          ></textarea>
+          <button className='single-page-btn'>Comment</button>
         </div>
       )}
     </div>

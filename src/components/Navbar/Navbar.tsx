@@ -9,7 +9,6 @@ const Navbar = ({ savedUser, setSavedUser }: SavedUserProps) => {
     hamburgerRef.current?.classList.toggle('active');
   };
 
-  console.log(savedUser?.email);
   return (
     <nav className='navbar'>
       <h1 className='navbar-logo'>Game Store 3.0</h1>

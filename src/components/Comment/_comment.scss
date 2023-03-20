@@ -1,0 +1,19 @@
+@use '../../scss/abstracts/variables' as *;
+
+.comment {
+  &-container {
+    width: max-content;
+    padding: 0.2rem $padding-smaller;
+    background-color: $blue;
+    border-radius: $border-radius-small;
+    margin: $margin-small 0;
+
+    &-user {
+      font-size: $font-size-small;
+    }
+
+    &-self {
+      font-size: $font-size-smaller;
+    }
+  }
+}
