@@ -29,13 +29,13 @@ const Navbar = ({ savedUser, setSavedUser }: SavedUserProps) => {
           Login
         </Link>
       )}
-      <button
+      {/* <button
         className='navbar-hamburger'
         ref={hamburgerRef}
         onClick={handleClick}
       >
         <span className='navbar-hamburger__bar'></span>
-      </button>
+      </button> */}
     </nav>
   );
 };

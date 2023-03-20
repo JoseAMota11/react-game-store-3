@@ -1,6 +1,6 @@
-import { User } from '../../interfaces/User';
+import { CommentProps } from '../../interfaces/CommentProps';
 
-const Comment = ({ comments, name, lastName }: Partial<User>) => {
+const Comment = ({ comments, name, lastName }: CommentProps) => {
   return (
     <>
       <div className='comment-container'>

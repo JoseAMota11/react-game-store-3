@@ -87,22 +87,33 @@ const SinglePage = ({ savedUser }: SavedUserProps) => {
               <Platforms key={id} platform={{ name }} />
             ))}
           </div>
+
           <h3 className='platform-title'>Comments</h3>
-          {savedUser?.email.length > 0 &&
-          savedUser.commentId === parseInt(id) ? (
+          {savedUser?.email.length > 0 ? (
             <div className='comment'>
-              {savedUser.games?.map(({ id, comments }) => (
-                <Comment
-                  key={id}
-                  comments={comments}
-                  name={savedUser.name}
-                  lastName={savedUser.lastname}
-                />
-              ))}
+              {savedUser.games?.map(({ id: commentId, comments }) => {
+                if (commentId === parseInt(id)) {
+                  return (
+                    <Comment
+                      key={commentId}
+                      commentId={commentId}
+                      id={parseInt(id)}
+                      comments={comments}
+                      name={savedUser.name}
+                      lastName={savedUser.lastname}
+                    />
+                  );
+                }
+              })}
             </div>
           ) : (
-            <span style={{ textAlign: 'center' }}>No comments</span>
+            <span style={{ textAlign: 'center' }}>
+              {savedUser?.email.length > 0
+                ? 'No comments.'
+                : 'You need to be logged in to make a comment.'}
+            </span>
           )}
+
           <textarea
             className='single-page-comment'
             placeholder='Share yours thoughts'

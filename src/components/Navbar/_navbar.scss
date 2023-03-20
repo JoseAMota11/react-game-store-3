@@ -34,6 +34,13 @@
   &-button--login {
     background-color: $white;
     color: $blue;
+    transition: 0.3s;
+
+    &:hover {
+      background-color: $blue;
+      color: $white;
+      outline: 2px solid $white;
+    }
   }
 
   &-button--logout {
