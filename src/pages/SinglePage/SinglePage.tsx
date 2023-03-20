@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getGameById } from '../../services/game.services';
 import Loading from '../../modules/Loading/Loading';
@@ -18,7 +18,7 @@ const SinglePage = ({ savedUser }: SavedUserProps) => {
     platforms: [],
   });
   const [loading, setLoading] = useState(true);
-  const [gamesComment, setGamesComment] = useState();
+  // const [gamesComment, setGamesComment] = useState();
 
   useEffect(() => {
     (async function test() {
@@ -52,6 +52,7 @@ const SinglePage = ({ savedUser }: SavedUserProps) => {
     platforms,
   }: SinglePageItems = data;
   const showRating = ` ${rating} / ${rating_top}`;
+  const conditionUserSaved = savedUser?.email.length > 0;
 
   return (
     <div className='center'>
@@ -87,9 +88,8 @@ const SinglePage = ({ savedUser }: SavedUserProps) => {
               <Platforms key={id} platform={{ name }} />
             ))}
           </div>
-
           <h3 className='platform-title'>Comments</h3>
-          {savedUser?.email.length > 0 ? (
+          {conditionUserSaved ? (
             <div className='comment'>
               {savedUser.games?.map(({ id: commentId, comments }) => {
                 if (commentId === parseInt(id)) {
@@ -108,17 +108,20 @@ const SinglePage = ({ savedUser }: SavedUserProps) => {
             </div>
           ) : (
             <span style={{ textAlign: 'center' }}>
-              {savedUser?.email.length > 0
+              {conditionUserSaved
                 ? 'No comments.'
                 : 'You need to be logged in to make a comment.'}
             </span>
           )}
-
-          <textarea
-            className='single-page-comment'
-            placeholder='Share yours thoughts'
-          ></textarea>
-          <button className='single-page-btn'>Comment</button>
+          {conditionUserSaved ? (
+            <>
+              <textarea
+                className='single-page-comment'
+                placeholder='Share yours thoughts'
+              ></textarea>
+              <button className='single-page-btn'>Comment</button>
+            </>
+          ) : null}
         </div>
       )}
     </div>
