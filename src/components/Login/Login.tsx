@@ -2,6 +2,7 @@ import { FormEvent, useEffect, useReducer, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getUserFromAPI } from '../../services/user.services';
 import { SavedUserProps } from '../../interfaces/SavedUserProps';
+import useLocalStorage from '../../hooks/useLocalStorage';
 
 const reducer = (state, action) => {
   const { type, value } = action;
@@ -9,6 +10,10 @@ const reducer = (state, action) => {
 };
 
 const Login = ({ savedUser, setSavedUser }: SavedUserProps) => {
+  const [userSavedOnStorage, setUserSavedOnStorage] = useLocalStorage(
+    'user',
+    null
+  );
   const [state, dispatch] = useReducer(reducer, {
     email: '',
     password: '',
@@ -36,6 +41,7 @@ const Login = ({ savedUser, setSavedUser }: SavedUserProps) => {
     ) {
       emailRef.current?.classList.add('correct');
       passwordRef.current?.classList.add('correct');
+      setUserSavedOnStorage(savedUser);
       navigate('/');
     } else {
       dispatch({ type: 'error' });

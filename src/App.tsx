@@ -5,11 +5,16 @@ import Home from './pages/Home/Home';
 import SinglePage from './pages/SinglePage/SinglePage';
 import Login from './components/Login/Login';
 import { User } from './interfaces/User';
-import UnAuthorized from './components/UnAuthorized/UnAuthorized';
 
 const App = () => {
+  const savedUserOnLocaleStorage = localStorage.getItem('user')
+    ? JSON.parse(localStorage.getItem('user'))
+    : null;
   const [currentPage, setCurrentPage] = useState(1);
-  const [savedUser, setSavedUser] = useState<Partial<User[]>>();
+  const [savedUser, setSavedUser] = useState<Partial<User[]>>(
+    savedUserOnLocaleStorage
+  );
+
   const router = createBrowserRouter([
     {
       path: Route.home,
@@ -31,8 +36,6 @@ const App = () => {
       element: <Login savedUser={savedUser} setSavedUser={setSavedUser} />,
     },
   ]);
-
-  console.log(savedUser);
 
   return (
     <div className='App'>

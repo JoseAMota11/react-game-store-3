@@ -5,6 +5,11 @@ import { SavedUserProps } from '../../interfaces/SavedUserProps';
 const Navbar = ({ savedUser, setSavedUser }: SavedUserProps) => {
   // const hamburgerRef = useRef<HTMLButtonElement>(null);
 
+  const logout = () => {
+    setSavedUser(() => ({}));
+    localStorage.clear();
+  };
+
   return (
     <nav className='navbar'>
       <h1 className='navbar-logo'>Game Store 3.0</h1>
@@ -14,10 +19,7 @@ const Navbar = ({ savedUser, setSavedUser }: SavedUserProps) => {
         placeholder='E.g. Minecraft'
       />
       {savedUser?.email?.length > 0 ? (
-        <button
-          onClick={() => setSavedUser(() => ({}))}
-          className='navbar-button--logout'
-        >
+        <button onClick={logout} className='navbar-button--logout'>
           Logout
         </button>
       ) : (
