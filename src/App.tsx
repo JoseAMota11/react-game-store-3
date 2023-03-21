@@ -5,26 +5,36 @@ import Home from './pages/Home/Home';
 import SinglePage from './pages/SinglePage/SinglePage';
 import Login from './components/Login/Login';
 import { User } from './interfaces/User';
+import Alert from './modules/Alert/Alert';
 
 const App = () => {
   const savedUserOnLocaleStorage = localStorage.getItem('user')
     ? JSON.parse(localStorage.getItem('user'))
     : null;
   const [currentPage, setCurrentPage] = useState(1);
-  const [savedUser, setSavedUser] = useState<Partial<User[]>>(
-    savedUserOnLocaleStorage
-  );
+  const [savedUser, setSavedUser] = useState<User>(savedUserOnLocaleStorage);
+  const [showAlert, setShowAlert] = useState({ status: false, message: '' });
 
   const router = createBrowserRouter([
     {
       path: Route.home,
       element: (
-        <Home
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          savedUser={savedUser}
-          setSavedUser={setSavedUser}
-        />
+        <>
+          <Home
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            savedUser={savedUser}
+            setSavedUser={setSavedUser}
+            setShowAlert={setShowAlert}
+          />
+          {showAlert.status ? (
+            <Alert
+              setShowAlert={setShowAlert}
+              key={showAlert.message}
+              message={showAlert.message}
+            />
+          ) : null}
+        </>
       ),
     },
     {
@@ -33,7 +43,13 @@ const App = () => {
     },
     {
       path: Route.login,
-      element: <Login savedUser={savedUser} setSavedUser={setSavedUser} />,
+      element: (
+        <Login
+          savedUser={savedUser}
+          setSavedUser={setSavedUser}
+          setShowAlert={setShowAlert}
+        />
+      ),
     },
   ]);
 

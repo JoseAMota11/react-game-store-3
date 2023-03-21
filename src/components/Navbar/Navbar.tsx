@@ -2,10 +2,14 @@
 import { Link } from 'react-router-dom';
 import { SavedUserProps } from '../../interfaces/SavedUserProps';
 
-const Navbar = ({ savedUser, setSavedUser }: SavedUserProps) => {
+const Navbar = ({ savedUser, setSavedUser, setShowAlert }: SavedUserProps) => {
   const logout = () => {
-    setSavedUser(() => null);
     localStorage.clear();
+    setSavedUser(() => null);
+    setShowAlert(() => ({
+      message: 'User has been logged out successfully.',
+      status: true,
+    }));
   };
 
   return (

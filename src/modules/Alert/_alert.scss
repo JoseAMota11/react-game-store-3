@@ -1,0 +1,28 @@
+@use '../../scss/abstracts/variables' as *;
+@use '../../scss/abstracts/mixins' as *;
+
+.alert {
+  position: absolute;
+  width: 20rem;
+  padding: $padding-smaller $padding-medium;
+  border-radius: $border-radius-small;
+  background-color: $white;
+  @include flexbox($justify: space-between, $direction: row);
+  left: 1rem;
+  top: 3rem;
+  box-shadow: $box-shadow-card;
+
+  &-message {
+    color: $blue;
+    font-size: $font-size-small;
+  }
+
+  &-button {
+    width: 30px;
+    height: 30px;
+
+    ion-icon {
+      font-size: $font-size-bigger;
+    }
+  }
+}

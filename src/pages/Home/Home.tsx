@@ -14,6 +14,7 @@ const Home = ({
   setCurrentPage,
   savedUser,
   setSavedUser,
+  setShowAlert,
 }: Partial<SavedUserProps>) => {
   const [data, setData] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
@@ -38,7 +39,11 @@ const Home = ({
 
   return (
     <div className='home'>
-      <Navbar savedUser={savedUser} setSavedUser={setSavedUser} />
+      <Navbar
+        savedUser={savedUser}
+        setSavedUser={setSavedUser}
+        setShowAlert={setShowAlert}
+      />
       <Search
         setData={setData}
         setTotalCount={setTotalCount}

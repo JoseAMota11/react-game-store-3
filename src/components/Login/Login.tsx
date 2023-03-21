@@ -1,8 +1,9 @@
-import { FormEvent, useEffect, useReducer, useRef } from 'react';
+import { FormEvent, useEffect, useReducer, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getUserFromAPI } from '../../services/user.services';
 import { SavedUserProps } from '../../interfaces/SavedUserProps';
 import useLocalStorage from '../../hooks/useLocalStorage';
+import Alert from '../../modules/Alert/Alert';
 
 type ReducerState = {
   email: string;
@@ -14,6 +15,7 @@ type ReducerState = {
 type ReducerAction = {
   type: string;
   value: string;
+  setShowAlert: (alert: object) => object;
 };
 
 const reducer = (state: ReducerState, action: ReducerAction) => {
@@ -21,7 +23,7 @@ const reducer = (state: ReducerState, action: ReducerAction) => {
   return { ...state, [type]: value };
 };
 
-const Login = ({ savedUser, setSavedUser }: SavedUserProps) => {
+const Login = ({ savedUser, setSavedUser, setShowAlert }: SavedUserProps) => {
   const [userSavedOnStorage, setUserSavedOnStorage] = useLocalStorage(
     'user',
     null
@@ -55,6 +57,10 @@ const Login = ({ savedUser, setSavedUser }: SavedUserProps) => {
       passwordRef.current?.classList.add('correct');
       setUserSavedOnStorage(savedUser);
       navigate('/');
+      setShowAlert(() => ({
+        message: 'User has been logged in successfully.',
+        status: true,
+      }));
     } else {
       dispatch({ type: 'error' });
       emailRef.current?.classList.add('incorrect');
