@@ -3,13 +3,11 @@ export interface User {
   password: string;
   name?: string;
   lastname?: string;
-  commentId: number;
   games?: [
     {
       id: number;
-      comments: {
-        comment: string;
-      };
+      comment: string;
     }
   ];
+  isLoggedIn: boolean;
 }

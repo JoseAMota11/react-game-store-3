@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getGameById } from '../../services/game.services';
 import Loading from '../../modules/Loading/Loading';
@@ -6,6 +6,8 @@ import { SinglePageItems } from '../../interfaces/SinglePageItems';
 import Platforms from '../../modules/Platforms/Platforms';
 import { SavedUserProps } from '../../interfaces/SavedUserProps';
 import Comment from '../../components/Comment/Comment';
+import { GameComment } from '../../interfaces/GameComment';
+import { getComments, postComment } from '../../services/comment.services';
 
 const SinglePage = ({ savedUser }: SavedUserProps) => {
   const { id } = useParams();
@@ -18,7 +20,44 @@ const SinglePage = ({ savedUser }: SavedUserProps) => {
     platforms: [],
   });
   const [loading, setLoading] = useState(true);
-  // const [gamesComment, setGamesComment] = useState();
+  const [gamesComment, setGamesComment] = useState<GameComment>({
+    gameId: null,
+    comment: '',
+    userName: '',
+    userLastName: '',
+  });
+  const [comments, setComments] = useState<Comment[]>([]);
+
+  const handleChange = (e: ChangeEvent) => {
+    const { value } = e.target;
+    setGamesComment(({ comment, gameId, userLastName, userName }) => ({
+      comment: value,
+      gameId: parseInt(id),
+      userName: savedUser.name,
+      userLastName: savedUser.lastname,
+    }));
+  };
+
+  const handleClick = (e: Event) => {
+    e.preventDefault();
+
+    try {
+      postComment({
+        userId: 1,
+        gameId: gamesComment.gameId,
+        comment: gamesComment.comment,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    (async function getCommentsFromAPI() {
+      const response = await getComments();
+      setComments(() => [...response]);
+    })();
+  }, []);
 
   useEffect(() => {
     (async function test() {
@@ -91,14 +130,14 @@ const SinglePage = ({ savedUser }: SavedUserProps) => {
           <h3 className='platform-title'>Comments</h3>
           {conditionUserSaved ? (
             <div className='comment'>
-              {savedUser.games?.map(({ id: commentId, comments }) => {
+              {comments?.map(({ gameId: commentId, comment }) => {
                 if (commentId === parseInt(id)) {
                   return (
                     <Comment
                       key={commentId}
                       commentId={commentId}
                       id={parseInt(id)}
-                      comments={comments}
+                      comment={comment}
                       name={savedUser.name}
                       lastName={savedUser.lastname}
                     />
@@ -118,8 +157,11 @@ const SinglePage = ({ savedUser }: SavedUserProps) => {
               <textarea
                 className='single-page-comment'
                 placeholder='Share yours thoughts'
+                onChange={handleChange}
               ></textarea>
-              <button className='single-page-btn'>Comment</button>
+              <button className='single-page-btn' onClick={handleClick}>
+                Comment
+              </button>
             </>
           ) : null}
         </div>

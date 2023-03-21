@@ -1,10 +1,5 @@
 export interface Comment {
-  games: [
-    {
-      id?: number;
-      comments?: {
-        comment: string;
-      };
-    }
-  ];
+  userId: number;
+  id: number | null;
+  comment: string;
 }

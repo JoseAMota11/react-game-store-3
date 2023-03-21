@@ -5,13 +5,13 @@ import Home from './pages/Home/Home';
 import SinglePage from './pages/SinglePage/SinglePage';
 import Login from './components/Login/Login';
 import { User } from './interfaces/User';
+import UnAuthorized from './components/UnAuthorized/UnAuthorized';
 
 const App = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [savedUser, setSavedUser] = useState<Partial<User[]>>();
   const router = createBrowserRouter([
     {
-      index: true,
       path: route.home,
       element: (
         <Home
@@ -32,7 +32,7 @@ const App = () => {
     },
   ]);
 
-  localStorage.clear();
+  console.log(savedUser);
 
   return (
     <div className='App'>

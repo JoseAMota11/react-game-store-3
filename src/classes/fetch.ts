@@ -1,11 +1,10 @@
 class Fetch {
-  private options: object = {
+  private optionGET: object = {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },
   };
-
   public async get(url: string, request?: object) {
     const params = new URLSearchParams(url);
 
@@ -17,7 +16,13 @@ class Fetch {
 
     if (params.toString()) url = `${url}?${params.toString()}`;
 
-    const data = await fetch(url, this.options);
+    const data = await fetch(url, this.optionGET);
+    const response = await data.json();
+    return response;
+  }
+
+  public async post(url: string, options: RequestInit) {
+    const data = await fetch(url, options);
     const response = await data.json();
     return response;
   }

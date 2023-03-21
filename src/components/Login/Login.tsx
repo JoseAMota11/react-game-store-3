@@ -22,7 +22,7 @@ const Login = ({ savedUser, setSavedUser }: SavedUserProps) => {
     (async function getUser() {
       try {
         const response = await getUserFromAPI();
-        setSavedUser(response[0]);
+        setSavedUser(() => ({ ...response[0], isLoggedIn: true }));
       } catch (error) {}
     })();
   }, []);
