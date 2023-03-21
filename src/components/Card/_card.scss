@@ -37,6 +37,10 @@
   @media (max-width: $screen-breakpoint-small) {
     padding: $padding-smaller;
 
+    &__image {
+      height: 11rem;
+    }
+
     &__info {
       grid-template-columns: 65% 35%;
 

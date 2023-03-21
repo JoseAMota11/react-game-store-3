@@ -12,6 +12,22 @@
   }
 
   @media (max-width: $screen-breakpoint-biggest) {
+    width: $width-big;
+  }
+
+  @media (max-width: $screen-breakpoint-big) {
+    width: $width-medium;
+  }
+
+  @media (max-width: $screen-breakpoint-medium) {
+    width: $width-small;
+  }
+
+  @media (max-width: $screen-breakpoint-small) {
+    width: $width-smaller;
+  }
+
+  @media (max-width: $screen-breakpoint-smaller) {
     width: 100%;
   }
 }

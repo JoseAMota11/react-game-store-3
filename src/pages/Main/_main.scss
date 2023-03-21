@@ -6,4 +6,27 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
+
+  @media (max-width: $screen-breakpoint-biggest) {
+    width: $width-big;
+    justify-content: space-between;
+  }
+
+  @media (max-width: $screen-breakpoint-big) {
+    width: $width-medium;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: $screen-breakpoint-medium) {
+    width: $width-small;
+  }
+
+  @media (max-width: $screen-breakpoint-small) {
+    width: $width-smaller;
+  }
+
+  @media (max-width: $screen-breakpoint-smaller) {
+    width: 100%;
+    grid-template-columns: repeat(1, 1fr);
+  }
 }

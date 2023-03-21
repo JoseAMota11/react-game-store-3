@@ -9,7 +9,7 @@
   @include grid();
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr;
-  margin: $margin-small 0;
+  margin-top: $margin-small;
   color: $white;
   padding: 0 $padding-small;
 
@@ -50,12 +50,38 @@
   }
 
   @media (max-width: $screen-breakpoint-biggest) {
-    width: 100%;
+    width: $width-big;
     grid-template-columns: repeat(2, 1fr);
 
     &-button--login,
     &-button--logout {
       grid-column: 2 / -1;
     }
+  }
+
+  @media (max-width: $screen-breakpoint-big) {
+    width: $width-medium;
+  }
+
+  @media (max-width: $screen-breakpoint-medium) {
+    width: $width-small;
+  }
+
+  @media (max-width: $screen-breakpoint-small) {
+    width: $width-smaller;
+    padding: 0 $padding-smaller;
+
+    &-logo {
+      font-size: $font-size-small;
+    }
+
+    &-button--login,
+    &-button--logout {
+      width: 5rem;
+    }
+  }
+
+  @media (max-width: $screen-breakpoint-smaller) {
+    width: 100%;
   }
 }
