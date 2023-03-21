@@ -60,5 +60,44 @@
     &-description {
       text-align: justify;
     }
+
+    @media (max-width: $screen-breakpoint-biggest) {
+      width: $width-big;
+    }
+
+    @media (max-width: $screen-breakpoint-big) {
+      width: $width-medium;
+    }
+
+    @media (max-width: $screen-breakpoint-medium) {
+      width: $width-small;
+    }
+
+    @media (max-width: $screen-breakpoint-small) {
+      width: $width-smaller;
+
+      &-main {
+        .title {
+          font-size: $font-size-medium;
+        }
+      }
+
+      .description-title,
+    .platform-title {
+      font-size: $font-size-small;
+    }
+
+      &-description {
+        font-size: $font-size-smaller;
+      }
+
+      .no-comments {
+        font-size: $font-size-smaller;
+      }
+    }
+
+    @media (max-width: $screen-breakpoint-smaller) {
+      width: 100%;
+    }
   }
 }

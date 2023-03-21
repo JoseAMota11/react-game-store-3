@@ -40,7 +40,6 @@ const SinglePage = ({ savedUser }: SavedUserProps) => {
 
   const handleClick = (e: Event) => {
     e.preventDefault();
-
     try {
       postComment({
         userId: 1,
@@ -100,7 +99,7 @@ const SinglePage = ({ savedUser }: SavedUserProps) => {
       ) : (
         <div className='single-page'>
           <div className='single-page-main'>
-            <h2 className='tile'>{name}</h2>
+            <h2 className='title'>{name}</h2>
             <span className='rating'>
               {rating_top === 0 ? null : (
                 <>
@@ -146,7 +145,7 @@ const SinglePage = ({ savedUser }: SavedUserProps) => {
               })}
             </div>
           ) : (
-            <span style={{ textAlign: 'center' }}>
+            <span className='no-comments' style={{ textAlign: 'center' }}>
               {conditionUserSaved
                 ? 'No comments.'
                 : 'You need to be logged in to make a comment.'}

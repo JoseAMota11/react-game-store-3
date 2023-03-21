@@ -10,4 +10,10 @@
     padding: $padding-smallest;
     border-radius: $border-radius-small;
   }
+
+  @media (max-width: $screen-breakpoint-small) {
+    &-item {
+      font-size: $font-size-smaller;
+    }
+  }
 }
