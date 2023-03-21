@@ -1,16 +1,17 @@
-import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react';
+import { FormEvent, useEffect, useReducer, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getUserFromAPI } from '../../services/user.services';
-import { User } from '../../interfaces/User';
-import { ErrorLogin } from '../../interfaces/Error';
 import { SavedUserProps } from '../../interfaces/SavedUserProps';
 
+const reducer = (state, action) => {
+  const { type, value } = action;
+  return { ...state, [type]: value };
+};
+
 const Login = ({ savedUser, setSavedUser }: SavedUserProps) => {
-  const [user, setUser] = useState<User>({
+  const [state, dispatch] = useReducer(reducer, {
     email: '',
     password: '',
-  });
-  const [error, setError] = useState<ErrorLogin>({
     status: false,
     message: '',
   });
@@ -27,38 +28,30 @@ const Login = ({ savedUser, setSavedUser }: SavedUserProps) => {
     })();
   }, []);
 
-  const handleChange = (e: ChangeEvent) => {
-    const { type, value } = e.target;
-    setUser((prevState) => ({ ...prevState, status: true, [type]: value }));
-  };
-
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (
-      user.email === savedUser.email &&
-      user.password === savedUser.password
+      state.email === savedUser.email &&
+      state.password === savedUser.password
     ) {
       emailRef.current?.classList.add('correct');
       passwordRef.current?.classList.add('correct');
       navigate('/');
     } else {
-      setError(() => ({
-        status: true,
-        message: 'The email or password is incorrect.',
-      }));
+      dispatch({ type: 'error' });
       emailRef.current?.classList.add('incorrect');
       passwordRef.current?.classList.add('incorrect');
     }
   };
 
-  const { email, password } = user;
+  const { email, password } = state;
 
   return (
     <div className='center-login'>
       <form className='login' onSubmit={handleSubmit}>
         <h2 className='login-title'>Login</h2>
-        {error.status ? (
-          <span className='login-error'>{error.message}</span>
+        {state.status ? (
+          <span className='login-error'>{state.message}</span>
         ) : null}
         <div className='login-email'>
           <ion-icon name='mail-outline' />
@@ -66,7 +59,7 @@ const Login = ({ savedUser, setSavedUser }: SavedUserProps) => {
             type='email'
             placeholder='example@email.com'
             value={email}
-            onChange={handleChange}
+            onChange={(e) => dispatch({ type: 'email', value: e.target.value })}
             ref={emailRef}
           />
         </div>
@@ -76,7 +69,9 @@ const Login = ({ savedUser, setSavedUser }: SavedUserProps) => {
             type='password'
             placeholder='********'
             value={password}
-            onChange={handleChange}
+            onChange={(e) =>
+              dispatch({ type: 'password', value: e.target.value })
+            }
             ref={passwordRef}
           />
         </div>

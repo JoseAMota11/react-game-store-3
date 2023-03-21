@@ -1,5 +1,5 @@
-export const route = {
-  home: '/',
-  game: 'game/:id',
-  login: '/login',
-};
+export enum Route {
+  home = '/',
+  game = 'game/:id',
+  login = '/login',
+}

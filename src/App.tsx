@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { route } from './routes/routes';
+import { Route } from './routes/routes';
 import Home from './pages/Home/Home';
 import SinglePage from './pages/SinglePage/SinglePage';
 import Login from './components/Login/Login';
@@ -12,7 +12,7 @@ const App = () => {
   const [savedUser, setSavedUser] = useState<Partial<User[]>>();
   const router = createBrowserRouter([
     {
-      path: route.home,
+      path: Route.home,
       element: (
         <Home
           currentPage={currentPage}
@@ -23,11 +23,11 @@ const App = () => {
       ),
     },
     {
-      path: route.game,
+      path: Route.game,
       element: <SinglePage savedUser={savedUser} setSavedUser={setSavedUser} />,
     },
     {
-      path: route.login,
+      path: Route.login,
       element: <Login savedUser={savedUser} setSavedUser={setSavedUser} />,
     },
   ]);

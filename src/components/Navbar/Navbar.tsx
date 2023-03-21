@@ -1,13 +1,9 @@
-import { useRef } from 'react';
+// import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { SavedUserProps } from '../../interfaces/SavedUserProps';
 
 const Navbar = ({ savedUser, setSavedUser }: SavedUserProps) => {
-  const hamburgerRef = useRef<HTMLButtonElement>(null);
-
-  const handleClick = () => {
-    hamburgerRef.current?.classList.toggle('active');
-  };
+  // const hamburgerRef = useRef<HTMLButtonElement>(null);
 
   return (
     <nav className='navbar'>
