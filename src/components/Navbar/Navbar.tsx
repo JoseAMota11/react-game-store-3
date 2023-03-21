@@ -13,11 +13,6 @@ const Navbar = ({ savedUser, setSavedUser }: SavedUserProps) => {
   return (
     <nav className='navbar'>
       <h1 className='navbar-logo'>Game Store 3.0</h1>
-      <input
-        className='navbar-input'
-        type='search'
-        placeholder='E.g. Minecraft'
-      />
       {savedUser?.email?.length > 0 ? (
         <button onClick={logout} className='navbar-button--logout'>
           Logout
@@ -27,13 +22,6 @@ const Navbar = ({ savedUser, setSavedUser }: SavedUserProps) => {
           Login
         </Link>
       )}
-      {/* <button
-        className='navbar-hamburger'
-        ref={hamburgerRef}
-        onClick={handleClick}
-      >
-        <span className='navbar-hamburger__bar'></span>
-      </button> */}
     </nav>
   );
 };

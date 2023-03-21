@@ -7,6 +7,7 @@ import Main from '../Main/Main';
 import Pagination from '../../components/Pagination/Pagination';
 import Loading from '../../modules/Loading/Loading';
 import { SavedUserProps } from '../../interfaces/SavedUserProps';
+import Search from '../../components/Search/Search';
 
 const Home = ({
   currentPage,
@@ -35,6 +36,7 @@ const Home = ({
   return (
     <div className='home'>
       <Navbar savedUser={savedUser} setSavedUser={setSavedUser} />
+      <Search />
       {loading ? <Loading /> : <Main data={data} />}
       <Pagination
         className='pagination-bar'
