@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 import { SavedUserProps } from '../../interfaces/SavedUserProps';
 
 const Navbar = ({ savedUser, setSavedUser }: SavedUserProps) => {
-
   const logout = () => {
-    setSavedUser(() => ({}));
+    setSavedUser(() => null);
     localStorage.clear();
   };
 
