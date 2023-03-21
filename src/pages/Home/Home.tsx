@@ -18,15 +18,18 @@ const Home = ({
   const [data, setData] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [isSearching, setIsSearching] = useState(false);
 
   useEffect(() => {
     (async function () {
       try {
-        setLoading(true);
-        const response = await getGames(PAGE_SIZE, currentPage);
-        setData(response.results);
-        setTotalCount(response.count);
-        setLoading(false);
+        if (!isSearching) {
+          setLoading(true);
+          const response = await getGames(PAGE_SIZE, currentPage);
+          setData(response.results);
+          setTotalCount(response.count);
+          setLoading(false);
+        }
       } catch (error) {
         /* Coming soon */
       }
@@ -36,7 +39,12 @@ const Home = ({
   return (
     <div className='home'>
       <Navbar savedUser={savedUser} setSavedUser={setSavedUser} />
-      <Search />
+      <Search
+        setData={setData}
+        setTotalCount={setTotalCount}
+        setIsSearching={setIsSearching}
+        currentPage={currentPage}
+      />
       {loading ? <Loading /> : <Main data={data} />}
       <Pagination
         className='pagination-bar'

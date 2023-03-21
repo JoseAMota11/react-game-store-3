@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { SavedUserProps } from '../../interfaces/SavedUserProps';
 
 const Navbar = ({ savedUser, setSavedUser }: SavedUserProps) => {
-  // const hamburgerRef = useRef<HTMLButtonElement>(null);
 
   const logout = () => {
     setSavedUser(() => ({}));

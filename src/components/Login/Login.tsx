@@ -4,7 +4,19 @@ import { getUserFromAPI } from '../../services/user.services';
 import { SavedUserProps } from '../../interfaces/SavedUserProps';
 import useLocalStorage from '../../hooks/useLocalStorage';
 
-const reducer = (state, action) => {
+type ReducerState = {
+  email: string;
+  password: string;
+  status: boolean;
+  message: string;
+};
+
+type ReducerAction = {
+  type: string;
+  value: string;
+};
+
+const reducer = (state: ReducerState, action: ReducerAction) => {
   const { type, value } = action;
   return { ...state, [type]: value };
 };
